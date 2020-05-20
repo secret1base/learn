@@ -29,13 +29,16 @@ public class LinkListTest {
 //        for (String s : list) {
 //            System.out.println(s);
 //        }
-        System.out.println(list.isEmpty());
-        System.out.println(list.size());
-        list.clear();
-        System.out.println(list.isEmpty());
-        System.out.println(list.size());
-        for (String s : list) {
-            System.out.println(s);
-        }
+//        System.out.println(list.isEmpty());
+//        System.out.println(list.size());
+//        list.clear();
+//        System.out.println(list.isEmpty());
+//        System.out.println(list.size());
+//        for (String s : list) {
+//            System.out.println(s);
+//        }
+        System.out.println(list.getMid());//快慢指针获取中位值
+
+
     }
 }

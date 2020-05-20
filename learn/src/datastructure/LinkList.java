@@ -80,6 +80,19 @@ public class LinkList<T> implements Iterable<T> {
         return N;
     }
 
+    //获取中位值
+    public T getMid(){
+        Node<T> slow=head;
+        Node<T> fast=head;
+        while (fast!=null&&fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+        }
+        return slow.v;
+    }
+
+
+
     @Override
     public Iterator iterator() {
         return new LinkIterator();
