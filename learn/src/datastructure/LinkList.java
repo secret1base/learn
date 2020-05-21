@@ -3,129 +3,140 @@ package datastructure;
 import java.util.Iterator;
 
 /**
- * 单向链表
  * @author: wyj
- * @create: 2020-05-20 14:54
+ * @create: 2020-05-21 19:02
  */
-public class LinkList<T> implements Iterable<T> {
-    private Node head;//头节点
-    private int N;//当前位置
+public class LinkList<T> implements Iterable<T>{
+    private Node head;
+    private int N;
 
     public LinkList(){
-        this.N=0;
-        this.head=new Node(null);
+        head=new Node(null,null);
+        N=0;
     }
-
-    //新增
     public void add(T v){
-        Node temp=head;
-        for(int i=0;i<N;i++){
-            temp=temp.next;
+        if(head.next==null){
+            head.next=new Node(v,null);
+        }else{
+            Node pre=head;
+            for(int i=0;i<N;i++){
+                pre=pre.next;
+            }
+            pre.next=new Node(v,null);
         }
-        temp.next= new Node<T>(v);
         N++;
     }
-    //插入
     public void insert(int i,T v){
-        Node temp=head;
-        for(int k=0;k<i;k++){
-            //找到目标结点的父结点
-            temp=temp.next;
+        if(i<0||i>=N){
+            throw new RuntimeException("索引不存在");
         }
-        temp.next= new Node<T>(v,temp.next);
+        Node pre=head;
+        for(int k=0;k<i;k++){
+            pre=pre.next;
+        }
+        Node after = pre.next;
+        Node node = new Node(v, after);
+        pre.next=node;
         N++;
     }
-    //修改
     public void modify(int i,T v){
-        Node temp=head;
-        for(int k=0;k<i;k++){
-            //找到目标结点的父结点
-            temp=temp.next;
+        if(i<0||i>=N){
+            throw new RuntimeException("索引不存在");
         }
-        temp.next.v=v;
+        Node pre=head;
+        for(int k=0;k<i;k++){
+            pre=pre.next;
+        }
+        Node curr = pre.next;
+        curr.item=v;
     }
-    //删除
-    public T delete(int i){
-        Node temp = this.head;
-        for(int k=0;k<i;k++){
-            //找到目标结点的父结点
-            temp=temp.next;
+
+    public T delMax(){
+        if(head.next==null){
+            throw new RuntimeException("已不存在元素");
         }
-        Node next = temp.next.next;//目标结点的子节点
-        T v = (T)temp.next.v;
-        temp.next=next;
+        Node del = head.next;
+        head.next = del.next;
         N--;
-        return v;
+        return del.item;
     }
 
-    //获取对应值
     public T get(int i){
-        Node<T> temp = this.head;
-        for(int k=0;k<i;k++){
-            temp=temp.next;
+        if(i<0||i>=N){
+            throw new RuntimeException("不存在");
         }
-        return temp.v;
+        Node pre=head;
+        for(int k=0;k<i;k++){
+            pre=pre.next;
+        }
+        return pre.next.item;
     }
-
     public boolean isEmpty(){
         return N==0;
     }
 
     public void clear(){
-        N=0;
         head.next=null;
+        head.item=null;
+        N=0;
     }
 
-    public int size(){
-        return N;
-    }
-
-    //获取中位值
     public T getMid(){
-        Node<T> slow=head;
-        Node<T> fast=head;
-        while (fast!=null&&fast.next!=null){
+        Node fast=head;
+        Node slow=head;
+        while (fast.next!=null&&fast.next.next!=null){
             fast=fast.next.next;
             slow=slow.next;
         }
-        return slow.v;
+        return slow.item;
+    }
+    public void revirse(){
+        if(N==0){
+            return;
+        }
+        revirse(head.next);
     }
 
-
-
+    private Node revirse(Node curr) {
+        //传入父结点
+        if(curr.next==null){
+            head.next=curr;
+            return curr;
+        }
+        Node pre = revirse(curr.next);
+        pre.next=curr;
+        curr.next=null;
+        return curr;
+    }
     @Override
     public Iterator iterator() {
-        return new LinkIterator();
+        return new LinkListIterato();
     }
 
-    private class LinkIterator implements Iterator<T>{
-        private Node cursor;
 
-        private LinkIterator(){
-            this.cursor=head;
+    private class LinkListIterato implements Iterator{
+        private Node curr;
+        LinkListIterato(){
+            curr=head;
         }
 
         @Override
         public boolean hasNext() {
-            return cursor.next!=null;
+            return curr.next!=null;
         }
 
         @Override
-        public T next() {
-            return (T) (cursor=cursor.next).v;
+        public Object next() {
+            return (curr=curr.next).item;
         }
     }
-
-
-    private class Node<T>{
-        private T v;
-        private Node<T> next;
-        private Node(T v,Node next){
-            this.v=v;
+    private class Node{
+        private Node next;
+        private T item;
+        Node(T item,Node next){
             this.next=next;
-        }
-        private Node(T v){
-            this.v=v;
+            this.item=item;
         }
     }
+
 }
