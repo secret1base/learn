@@ -3,7 +3,7 @@ package arithmetic;
 /**
  * 快速排序
  * @author: wyj
- * @create: 2020-05-20 18:11
+ * @date: 2020/05/20
  */
 public class QuickSort {
     public static void main(String[] args) {

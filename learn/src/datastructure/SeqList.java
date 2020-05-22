@@ -5,75 +5,83 @@ import java.util.Iterator;
 /**
  * 顺序表
  * @author: wyj
- * @create: 2020-05-20 14:00
+ * @date: 2020/05/20
  */
 public class SeqList<T> implements Iterable<T>{
-    private T[] elements;
-    private int index;
-
-    /**
-     * 初始化
-     * @param i
-     */
-    public SeqList(int i){
-        this.elements= (T[]) new Object[i];
-        this.index=0;
+    private T[] elesments;
+    private int N;
+    public SeqList(int size){
+        elesments=(T[])new Object[size];
+        N=0;
+    }
+    public void add(T v){
+        if(N==elesments.length){
+            resize(elesments.length*2);
+        }
+        elesments[N++]=v;
     }
 
-    //新增
-    public void insert(T a){
-        if(index==elements.length){
-            resize(elements.length*2);
+    public void insert(int i,T v){
+        if(i<0||i>=N){
+            throw new RuntimeException("指定位置索引不存在");
         }
-        elements[index++]=a;
+        if(N==elesments.length){
+            resize(elesments.length*2);
+        }
+        //移动
+        for(int k=N-1;k>=i;k--){
+            elesments[k+1]=elesments[k];
+        }
+        elesments[i]=v;
+        N++;
     }
 
-    //插入新增
-    public void insert(int i,T a){
-        if(index==elements.length){
-            resize(elements.length*2);
-        }
-        //移动i及i后面的元素
-        for(int k=index;k>i;k--){
-            elements[k]=elements[k-1];
-        }
-        elements[i]=a;
-        index++;
-    }
-    //扩容缩容
     private void resize(int i) {
-        T[] temps=(T[])new Object[i];
-        for(int k=0;k<index;k++){
-            temps[k]=elements[k];
+        T[] temps= (T[])new Object[i];
+        for(int k=0;k<N;k++){
+            temps[k]=elesments[k];
         }
-        elements=temps;
+        elesments=temps;
     }
 
-    //指定删除
-    public void remove(int i){
-        for(int k=i;k<index-1;k++){
-            elements[k]=elements[k+1];
+    public T remove(int i){
+        if(i<0||i>=N){
+            throw new RuntimeException("不存在");
         }
-        index--;
+        T elesment = elesments[i];
+        for (int k=i;k<N-1;k++){
+            elesments[k]=elesments[k+1];
+        }
+        N--;
+        if(N<elesments.length/4){
+            resize(elesments.length/2);
+        }
+        return elesment;
     }
-    //遍历
+    public int size(){
+        return N;
+    }
+
     @Override
-    public Iterator iterator() {
+    public Iterator<T> iterator() {
         return new SeqIterator();
     }
-    private class SeqIterator implements Iterator<T>{
-        private int cursor;
-        public SeqIterator(){
-            this.cursor=0;
+
+    private class SeqIterator implements Iterator{
+        private int curr;
+        SeqIterator(){
+            this.curr=0;
         }
+
         @Override
         public boolean hasNext() {
-            return this.cursor<index;
+            return curr<N;
         }
 
         @Override
         public T next() {
-            return elements[cursor++];
+            return elesments[curr++];
         }
     }
+
 }

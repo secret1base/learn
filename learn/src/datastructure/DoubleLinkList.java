@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * 双向链表
  * @author: wyj
- * @create: 2020-05-21 16:29
+ * @date: 2020/05/21
  */
 public class DoubleLinkList<T> implements Iterable<T>{
     private Node head;

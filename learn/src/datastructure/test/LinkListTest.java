@@ -5,7 +5,7 @@ import datastructure.LinkList;
 /**
  * 单向链表测试
  * @author: wyj
- * @create: 2020-05-20 15:29
+ * @date: 2020/05/20
  */
 public class LinkListTest {
     public static void main(String[] args) {

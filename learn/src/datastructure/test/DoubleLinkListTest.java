@@ -4,7 +4,7 @@ import datastructure.DoubleLinkList;
 
 /**
  * @author: wyj
- * @create: 2020-05-21 18:00
+ * @date: 2020/05/21
  */
 public class DoubleLinkListTest {
     public static void main(String[] args) {

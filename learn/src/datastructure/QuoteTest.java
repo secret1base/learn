@@ -3,7 +3,7 @@ package datastructure;
 /**
  * 测试引用的传递
  * @author: wyj
- * @create: 2020-05-21 16:59
+ * @date: 2020/05/21
  */
 public class QuoteTest {
     public static void main(String[] args) {

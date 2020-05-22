@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 /**
  * @author: wyj
- * @create: 2020-05-21 19:02
+ * @date: 2020/05/21
  */
 public class LinkList<T> implements Iterable<T>{
     private Node head;

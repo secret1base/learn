@@ -2,7 +2,7 @@ package arithmetic;
 
 /**
  * @author: wyj
- * @create: 2020-05-21 14:31
+ * @date: 2020/05/21
  */
 public class MergeSort {
     public static void main(String[] args) {
