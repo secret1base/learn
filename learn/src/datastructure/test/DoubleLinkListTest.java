@@ -31,5 +31,10 @@ public class DoubleLinkListTest {
             System.out.println(s);
         }
         System.out.println(list.get(0));
+        list.clear();
+        System.out.println(list.isEmpty());
+        for (String s : list) {
+            System.out.println(s);
+        }
     }
 }
