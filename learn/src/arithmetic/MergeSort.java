@@ -25,7 +25,7 @@ public class MergeSort {
         if(leftBound>=rightBound){
             return;
         }
-        int mid=(leftBound+rightBound)/2;
+        int mid=leftBound+(rightBound-leftBound)/2;
         sort(arr,leftBound,mid);
         sort(arr,mid+1,rightBound);
         merge(arr,leftBound,mid,rightBound);

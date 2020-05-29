@@ -3,14 +3,13 @@ package datastructure;
 import java.util.Iterator;
 
 /**
- * 无序符号表：插入键值对、根据key删除键值对、根据key获取值、获取长度、判空、查询、遍历
+ * 无序符号表：isEmpty、size、put、get、remove、foreach
  * @author: wyj
  * @date: 2020/05/22
  */
 public class SymbolTable<K,V> implements Iterable<V>{
     private Node head;
     private int N;
-
     public SymbolTable(){
         head=new Node(null,null,null);
         N=0;
@@ -20,42 +19,49 @@ public class SymbolTable<K,V> implements Iterable<V>{
         return N==0;
     }
 
-    /**
-     * 用于修改key的对应值
-     * @param k
-     * @return
-     */
-    private Node getNode(K k){
+    public int size(){
+        return N;
+    }
+
+    public void put(K key,V value){
         if(isEmpty()){
-            return null;
+            head.next=new Node(key,value,null);
+            N++;
         }else{
-            Node curr=head;
-            while (curr.next!=null){
-                curr=curr.next;
-                if(curr.key.equals(k)){
-                    return curr;
+            Node pre=head;
+            while (pre.next!=null){
+                if(pre.next.key.equals(key)){
+                    pre.next.value=value;
+                    return;
                 }
+                pre=pre.next;
             }
+            pre.next=new Node(key,value,null);
+            N++;
+        }
+    }
+    public V get(K key){
+        Node pre=head;
+        while (pre.next!=null){
+            if(pre.next.key.equals(key)){
+                return pre.next.value;
+            }
+            pre=pre.next;
         }
         return null;
     }
 
-    /**
-     * 获取
-     * @param k
-     * @return
-     */
-    public V get(K k){
-        if(isEmpty()){
-            return null;
-        }else{
-            Node curr=head;
-            while (curr.next!=null){
-                curr=curr.next;
-                if(curr.key.equals(k)){
-                    return curr.value;
-                }
+    public V remove(K key){
+        Node pre=head;
+        while (pre.next!=null){
+            if(pre.next.key.equals(key)){
+                Node remove = pre.next;
+                Node curr = pre.next.next;
+                pre.next=curr;
+                N--;
+                return remove.value;
             }
+            pre=pre.next;
         }
         return null;
     }
@@ -63,55 +69,19 @@ public class SymbolTable<K,V> implements Iterable<V>{
     public void foreach(){
         Node pre=head;
         while (pre.next!=null){
-            pre=pre.next;
-            System.out.println("key="+pre.key+",value="+pre.value);
-        }
-    }
-
-    public void put(K k,V v){
-        if(isEmpty()){
-            head.next=new Node(k,v,null);
-            N++;
-        }else{
-            Node node = getNode(k);
-            if(node!=null){
-                node.value=v;
-            }else{
-                Node after = head.next;
-                Node curr = new Node(k, v, after);
-                head.next=curr;
-                N++;
-            }
-        }
-    }
-//    根据key删除键值对、根据key获取值、获取长度、判空、查询
-
-    public V remove(K k){
-        Node pre=head;
-        while (pre.next!=null){
-            if(pre.next.key.equals(k)){
-                Node delNode = pre.next;
-                Node curr = delNode.next;
-                pre.next=curr;
-                N--;
-                return delNode.value;
-            }
+            System.out.println("key="+pre.next.key+",value="+pre.next.value);
             pre=pre.next;
         }
-        return null;
-    }
-
-    public int size(){
-        return N;
     }
 
     @Override
     public Iterator<V> iterator() {
-        return new SymbolTableIterator();
+        return new TableIterator();
     }
-    private class SymbolTableIterator implements Iterator{
+
+    private class TableIterator implements Iterator{
         private Node curr;
-        SymbolTableIterator(){
+        TableIterator(){
             curr=head;
         }
 
@@ -125,8 +95,6 @@ public class SymbolTable<K,V> implements Iterable<V>{
             return (curr=curr.next).value;
         }
     }
-
-
     private class Node{
         K key;
         V value;

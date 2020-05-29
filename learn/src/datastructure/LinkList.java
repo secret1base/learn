@@ -51,14 +51,18 @@ public class LinkList<T> implements Iterable<T>{
         curr.item=v;
     }
 
-    public T delMax(){
-        if(head.next==null){
-            throw new RuntimeException("已不存在元素");
+    public T remove(int i){
+        if(i<0||i>=N){
+            throw new RuntimeException("不存在对应此处索引");
         }
-        Node del = head.next;
-        head.next = del.next;
+        Node pre=head;
+        for(int k=0;k<i;k++){
+            pre=pre.next;
+        }
+        Node remove = pre.next;
+        pre.next=remove.next;
         N--;
-        return del.item;
+        return remove.item;
     }
 
     public T get(int i){

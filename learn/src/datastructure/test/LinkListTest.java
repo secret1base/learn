@@ -39,7 +39,7 @@ public class LinkListTest {
         }
 
         while (!list.isEmpty()){
-            System.out.println(list.delMax());
+            System.out.println(list.remove(0));
         }
         for(int i=0;i<10;i++){
             list.add(""+i+i);
