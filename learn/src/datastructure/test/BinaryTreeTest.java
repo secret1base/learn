@@ -4,6 +4,7 @@ import datastructure.BinaryTree;
 import datastructure.Queue;
 
 /**
+ * 二叉查找树测试
  * @author: wyj
  * @date: 2020/06/03
  */
@@ -38,5 +39,10 @@ public class BinaryTreeTest {
         }
         System.out.println(tree.getMaxKey());
         System.out.println(tree.getMinKey());
+        Queue<Integer> keys = tree.layerErgodic();
+        for (Integer key : keys) {
+            System.out.println("key="+key+";value="+tree.get(key));
+        }
+        System.out.println(tree.maxDepth());
     }
 }

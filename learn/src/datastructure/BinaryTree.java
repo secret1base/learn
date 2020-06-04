@@ -1,7 +1,7 @@
 package datastructure;
 
 /**
- * 二叉查找树:put、delete、get、查找二叉树中最小的键、查找二叉树中最大的键、前序遍历、中序遍历、后序遍历
+ * 二叉查找树:put、delete、get、查找二叉树中最小的键、查找二叉树中最大的键、前序遍历、中序遍历、后序遍历、层序遍历、最大深度
  * @author: wyj
  * @date: 2020/05/29
  */
@@ -200,6 +200,59 @@ public class BinaryTree<K extends Comparable,V> {
         }
         keys.enqueue(node.key);
     }
+
+    /**
+     * 层序遍历(非递归遍历)
+     * 1.创建队列，存储每一层的结点；
+     * 2.使用循环从队列中弹出一个结点：
+     *  2.1获取当前结点的key；
+     *  2.2如果当前结点的左子结点不为空，则把左子结点放入到队列中
+     *  2.3如果当前结点的右子结点不为空，则把右子结点放入到队列中
+     * @return
+     */
+    public Queue<K> layerErgodic(){
+        Queue<K> keys=new Queue<>();
+        Queue<Node> nodeQueue=new Queue<>();
+        nodeQueue.enqueue(root);
+        while (!nodeQueue.isEmpty()){
+            Node node = nodeQueue.dequeue();
+            keys.enqueue(node.key);
+            if(node.left!=null){
+                nodeQueue.enqueue(node.left);
+            }
+            if(node.right!=null){
+                nodeQueue.enqueue(node.right);
+            }
+        }
+        return keys;
+    }
+
+    public int maxDepth(){
+        return maxDepth(root);
+    }
+
+    /**
+     * 最大深度
+     * @param node
+     * @return
+     */
+    private int maxDepth(Node node) {
+        if(node==null){
+            return 0;
+        }
+        int max=0;
+        int left=0;
+        int right=0;
+        if(node.left!=null){
+            left= maxDepth(node.left);
+        }
+        if(node.right!=null){
+            right= maxDepth(node.right);
+        }
+        max=left>right?left+1:right+1;
+        return max;
+    }
+
 
     private class Node{
         K key;
