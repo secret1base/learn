@@ -240,7 +240,6 @@ public class BinaryTree<K extends Comparable,V> {
         if(node==null){
             return 0;
         }
-        int max=0;
         int left=0;
         int right=0;
         if(node.left!=null){
@@ -249,8 +248,7 @@ public class BinaryTree<K extends Comparable,V> {
         if(node.right!=null){
             right= maxDepth(node.right);
         }
-        max=left>right?left+1:right+1;
-        return max;
+        return left>right?left+1:right+1;
     }
 
 
