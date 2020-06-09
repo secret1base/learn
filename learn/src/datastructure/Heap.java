@@ -1,8 +1,8 @@
 package datastructure;
 
 /**
- * 最大堆
- * @author: wyj
+ * 最大堆:动态扩容、新增、删除、遍历、获取当前数组、按从小到大获取
+ * @author: wyj 有问题 备份下
  * @date: 2020/05/21
  */
 public class Heap<T extends Comparable<T>> {
@@ -16,7 +16,7 @@ public class Heap<T extends Comparable<T>> {
     public boolean isEmpty(){
         return N==1;
     }
-    //动态扩容、新增、删除、遍历、获取当前数组、按从小到大获取
+
     public void add(T v){
         if(N==elements.length){
             resize(elements.length*2);
