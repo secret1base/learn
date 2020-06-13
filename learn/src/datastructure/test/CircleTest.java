@@ -72,11 +72,11 @@ public class CircleTest {
             this.item=item;
         }
         public void foreach(){
-            Node temp=next;
-            System.out.println(item);
-            while (temp!=null){
-                System.out.println(temp.item);
-                temp=temp.next;
+            Node curr=this;
+            System.out.println(curr.item);
+            while (curr.next!=null){
+                curr=curr.next;
+                System.out.println(curr.item);
             }
         }
     }

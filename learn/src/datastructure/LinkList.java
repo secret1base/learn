@@ -3,6 +3,7 @@ package datastructure;
 import java.util.Iterator;
 
 /**
+ * 单向链表
  * @author: wyj
  * @date: 2020/05/21
  */
