@@ -2,6 +2,7 @@ package jvm.jvmtest;
 
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,20 +12,20 @@ import java.util.List;
  * @date: 2020/06/13
  */
 public class SoftReferenceAndOldGeneration {
-    private static final int _4MB = 4 * 1024 * 1024;
+    private static final int _4MB = 28 * 1024 * 1024;
     public static void main(String[] args) throws InterruptedException {
-        System.out.println("软引用对象创建之前");
-        Thread.sleep(30000);
-        List<SoftReference<byte[]>> list = new ArrayList<>();
+//        System.out.println("软引用对象创建之前");
+//        Thread.sleep(30000);
+        List<WeakReference<byte[]>> list = new ArrayList<>();
         // 引用队列
         ReferenceQueue<byte[]> queue = new ReferenceQueue<>();
-        for (int i = 0; i < 5; i++) {
+//        for (int i = 0; i < 5; i++) {
             // 关联了引用队列， 当软引用所关联的 byte[]被回收时，软引用自己会加入到 queue 中去
-            SoftReference<byte[]> ref = new SoftReference<>(new byte[_4MB], queue);
+            WeakReference<byte[]> ref = new WeakReference<>(new byte[_4MB], queue);
             System.out.println(ref.get());
             list.add(ref);
             System.out.println(list.size());
-        }
+//        }
         System.out.println("软引用对象创建完成");
         Thread.sleep(30000);
         System.gc();

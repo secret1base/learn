@@ -71,6 +71,10 @@ public class BinaryTree<K extends Comparable,V> {
             }
             //获取到后删除该值
             Node pre=node.right;
+            //这里有个特别的坑，如果pre没有左子节点，需要直接置null，否则二叉树会变成环
+            if(pre.left==null){
+                node.right=null;
+            }
             while (pre.left!=null){
                 if(pre.left.left==null){
                     pre.left=null;

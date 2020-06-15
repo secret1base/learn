@@ -20,6 +20,7 @@ public class BinaryTreeTest {
         tree.put(4,"si");
         tree.put(3,"san");
         tree.put(31,"sanshiyi");
+        tree.delete(10);
         System.out.println(tree.size()==10);
         System.out.println(tree.isEmpty()==false);
         System.out.println("前序遍历如下：");
