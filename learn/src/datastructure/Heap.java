@@ -1,15 +1,16 @@
 package datastructure;
 
 /**
- * 最大堆:动态扩容、新增、删除、遍历、获取当前数组、按从小到大获取
+ * 最大堆:动态扩容、新增、删除、取最大值
+ * less、exchange、delMax、insert、swim、sink
  * @author: wyj 有问题 备份下
  * @date: 2020/05/21
  */
 public class Heap<T extends Comparable<T>> {
     private T[] elements;
-    private int N;//索引从1开始，0不使用
+    private int N;
     public Heap(int size){
-        elements= (T[]) new Comparable[size];
+        elements=(T[])new Comparable[size+1];
         N=1;
     }
 
@@ -17,75 +18,87 @@ public class Heap<T extends Comparable<T>> {
         return N==1;
     }
 
-    public void add(T v){
-        if(N==elements.length){
+    public int size(){
+        return N-1;
+    }
+
+    public void add(T item){
+        if(N>elements.length-1){
             resize(elements.length*2);
         }
-        elements[N]=v;
+        elements[N]=item;
         swim(N);
         N++;
     }
 
     private void swim(int n) {
-        while (n/2>1){
-            if(less(n,n/2)){
-                swap(elements,n,n/2);
+        while (n/2>=1){
+            if(less(n/2,n)){
+                swap(n/2,n);
+                n=n/2;
+            }else{
+                break;
             }
-            n=n/2;
         }
+    }
+
+    private void swap(int i, int n) {
+        T temp=elements[i];
+        elements[i]=elements[n];
+        elements[n]=temp;
+    }
+
+    private boolean less(int i, int n) {
+        return elements[i].compareTo(elements[n])<0;
     }
 
     private void resize(int i) {
-        T[] temps= (T[]) new Comparable[i];
-        for(int k=0;k<N;k++){
-            temps[k]= elements[k];
+        T[] temps = (T[])new Comparable[i];
+        for (int k=1;k<N;k++){
+            temps[k]=elements[k];
         }
+        elements=temps;
     }
 
     public T delMax(){
-        swap(elements,1,N-1);
-        T max = elements[N-1];
+        if(isEmpty()){
+            return null;
+        }
+        swap(1,N-1);
         N--;
+        T del = elements[N];
         sink(1);
-        return max;
+        return del;
     }
 
     private void sink(int i) {
-        while (i*2<N){
-            if(i*2+1<N){
-                if(less(i*2,i*2+1)){
-                    //右子节点大
-                    if(less(i,i*2+1)){
-                        swap(elements,i,i*2+1);
-                        i=i*2+1;
-                    }else{
-                        break;
-                    }
+        while (2*i<N){
+            int maxSonIndex;
+            if(2*i+1<N){
+                if(less(2*i,2*i+1)){
+                    maxSonIndex=2*i+1;
                 }else{
-                    //左子节点大
-                    if(less(i,i*2)){
-                        swap(elements,i,i*2);
-                        i=i*2;
-                    }else{
-                        break;
-                    }
+                    maxSonIndex=2*i;
                 }
+            }else{
+                maxSonIndex=2*i;
+            }
+            if(less(i,maxSonIndex)){
+                swap(i,maxSonIndex);
+                i=maxSonIndex;
+            }else{
+                break;
             }
         }
     }
 
-    private void swap(T[] elements, int a, int b) {
-        T element=elements[a];
-        elements[a]=elements[b];
-        elements[b]=element;
-    }
-
-    public boolean less(int a,int b){
-        return elements[a].compareTo(elements[b])<0;
-    }
-
-    public Comparable[] getArr(){
-        return elements;
+    public boolean isHeap(){
+        for (int i=N-1;i/2>1;i--){
+            if(elements[i].compareTo(elements[i/2])>0){
+                return false;
+            }
+        }
+        return true;
     }
 
 }
