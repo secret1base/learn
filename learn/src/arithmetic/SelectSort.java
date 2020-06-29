@@ -7,6 +7,9 @@ package arithmetic;
  */
 public class SelectSort {
     public int[] selectSort(int[] arr){
+        if(arr.length<=1){
+            return arr;
+        }
         for(int i=0;i<arr.length;i++){
             int min=i;
             for(int j=i+1;j<arr.length;j++){
@@ -14,9 +17,11 @@ public class SelectSort {
                     min=j;
                 }
             }
-            int temp=arr[min];
-            arr[min]=arr[i];
-            arr[i]=temp;
+            if(i!=min){
+                int tmp=arr[min];
+                arr[min]=arr[i];
+                arr[i]=tmp;
+            }
         }
         return arr;
     }

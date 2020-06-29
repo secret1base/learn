@@ -18,7 +18,7 @@ public class ShellSort {
         }
         int a=0;
         int b=arr.length-1;
-        int d=(a+b)/2;
+        int d=a+(b-a)/2;
         while (d>=1){
             for(int i=d;i<arr.length;i++){
                 for(int j=i;j>=d;j-=d){

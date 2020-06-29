@@ -3,7 +3,7 @@ package datastructure;
 /**
  * 最大堆:动态扩容、新增、删除、取最大值
  * less、exchange、delMax、insert、swim、sink
- * @author: wyj 有问题 备份下
+ * @author: wyj
  * @date: 2020/05/21
  */
 public class Heap<T extends Comparable<T>> {

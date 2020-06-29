@@ -12,78 +12,61 @@ public class PaperFoldingTest {
      * 折纸问题
      */
     public static void main(String[] args) {
-        //创建折纸树
-        Node paperNode= createTree(3);
-        //中序遍历进行打印
-        Queue<String> paperList = new Queue<>();
-        midErgodic(paperNode,paperList);
-        for (String s : paperList) {
-            System.out.println(s);
+        PaperFoldingTest paperTest = new PaperFoldingTest();
+        Node tree = paperTest.createTree(3);
+        Queue<String> ks = new Queue<>();
+        paperTest.midErgodic(tree,ks);
+        for (String k : ks) {
+            System.out.println(k);
         }
     }
 
-    /**
-     * 中序遍历
-     * @param node
-     * @param keys
-     */
-    public static void midErgodic(Node<String,String> node, Queue<String> keys) {
-        if(node==null){
-            return;
-        }
-        if(node.left!=null){
-            midErgodic(node.left,keys);
-        }
-        keys.enqueue(node.key);
-        if(node.right!=null){
-            midErgodic(node.right,keys);
-        }
-    }
-
-    /**
-     * 创建折纸树
-     * @param count
-     * @return
-     */
-    public static Node createTree(int count) {
-        if(count==0){
+    public Node createTree(int count){
+        if(count<=0){
             return null;
         }
-        Node root=null;
+        Node root = null;
         for(int i=0;i<count;i++){
             if(i==0){
-                root=new Node("down","null",null,null);
+                root=new Node("down",null,null);
             }else{
-                Queue<Node> queue = new Queue<>();
-                queue.enqueue(root);
-                //折纸处理
-                while (!queue.isEmpty()){
-                    Node deNode = queue.dequeue();
-                    if(deNode.left!=null){
-                        queue.enqueue(deNode.left);
-                    }
-                    if(deNode.right!=null){
-                        queue.enqueue(deNode.right);
-                    }
-                    if(deNode.left==null&&deNode.right==null){
-                        deNode.left=new Node("down","null",null,null);
-                        deNode.right=new Node("up","null",null,null);
+                Queue<Node> nodes = new Queue<>();
+                nodes.enqueue(root);
+                while (!nodes.isEmpty()){
+                    Node dequeue = nodes.dequeue();
+                    if(dequeue.left!=null&&dequeue.right!=null){
+                        nodes.enqueue(dequeue.left);
+                        nodes.enqueue(dequeue.right);
+                    }else{
+                        dequeue.left=new Node("down",null,null);
+                        dequeue.right=new Node("up",null,null);
                     }
                 }
             }
         }
         return root;
     }
+
+    public void midErgodic(Node<String> node,Queue<String> ks){
+        if(node==null){
+            return;
+        }
+        if(node.left!=null){
+            midErgodic(node.left,ks);
+        }
+        ks.enqueue(node.item);
+        if(node.right!=null){
+            midErgodic(node.right,ks);
+        }
+    }
 }
 
-class Node<K,V>{
-    K key;
-    V value;
-    Node left;
-    Node right;
-    Node(K key, V value, Node left, Node right){
-        this.key=key;
-        this.value=value;
+class Node<T>{
+    public T item;
+    public Node left;
+    public Node right;
+    public Node(T item,Node left,Node right){
+        this.item=item;
         this.left=left;
         this.right=right;
     }
