@@ -3,6 +3,7 @@ package datastructure.test;
 import datastructure.UnionFindTree;
 
 /**
+ * 并查集测试
  * @author: wyj
  * @date: 2020/07/09
  */

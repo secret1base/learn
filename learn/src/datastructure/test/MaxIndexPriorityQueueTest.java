@@ -1,14 +1,14 @@
 package datastructure.test;
 
 import datastructure.Heap;
-import datastructure.IndexPriorityQueue;
+import datastructure.MaxIndexPriorityQueue;
 
 /**
  * 最大索引优先队列测试
  * @author: wyj
  * @date: 2020/06/22
  */
-public class IndexPriorityQueueTest {
+public class MaxIndexPriorityQueueTest {
     public static void main(String[] args) {
         Heap<String> heap = new Heap<>(1);
         heap.add("D");
@@ -17,7 +17,7 @@ public class IndexPriorityQueueTest {
         heap.add("E");
         heap.add("C");
         //堆结构为EDABC
-        IndexPriorityQueue<String> queue = new IndexPriorityQueue<String>(1);
+        MaxIndexPriorityQueue<String> queue = new MaxIndexPriorityQueue<String>(1);
         queue.enqueue("D");
         queue.enqueue("B");
         queue.enqueue("A");
