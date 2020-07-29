@@ -23,6 +23,9 @@ public class UnionFindTree {
             sz[i]=1;
         }
     }
+    public int[] getSz(){
+        return sz;
+    }
 
     /**
      * 当前分组数

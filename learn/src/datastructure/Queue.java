@@ -17,17 +17,12 @@ public class Queue<T> implements Iterable<T>{
     }
 
     public void enqueue(T item){
-        if(N==0){
-            head.next=new Node(item,null);
-            N++;
-        }else{
-            Node pre=head;
-            while (pre.next!=null){
-                pre=pre.next;
-            }
-            pre.next=new Node(item,null);
-            N++;
+        Node pre=head;
+        while (pre.next!=null){
+            pre=pre.next;
         }
+        pre.next=new Node(item,null);
+        N++;
     }
 
     public T dequeue(){

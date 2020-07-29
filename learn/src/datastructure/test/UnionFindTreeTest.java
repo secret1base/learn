@@ -18,6 +18,11 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            //打印各个节点包含本身的节点数
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -29,6 +34,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -40,6 +49,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -51,6 +64,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -62,6 +79,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -73,6 +94,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -84,6 +109,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -95,6 +124,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -106,6 +139,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -117,6 +154,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -128,6 +169,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -139,6 +184,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -150,6 +199,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -161,6 +214,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -172,6 +229,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -183,6 +244,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -194,6 +259,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -205,6 +274,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -216,6 +289,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -227,6 +304,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -238,6 +319,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -249,6 +334,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -260,6 +349,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -271,6 +364,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -282,6 +379,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -293,6 +394,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -304,6 +409,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -315,6 +424,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -326,6 +439,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -337,6 +454,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -348,6 +469,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -359,6 +484,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -370,6 +499,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -381,6 +514,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -392,6 +529,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -403,6 +544,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i : sz) {
+                System.out.println(i);
+            }
         }
 
 
@@ -414,6 +559,10 @@ public class UnionFindTreeTest {
             }
             uf.union(p,q);
             System.out.println("当前并查集中还有："+uf.getCount()+"个分组");
+            int[] sz = uf.getSz();
+            for (int i=0;i<sz.length;i++) {
+                System.out.println(i+"="+sz[i]);
+            }
         }
 
 

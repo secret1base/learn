@@ -3,6 +3,7 @@ package datastructure.test;
 import datastructure.SeqList;
 
 /**
+ * 顺序表
  * @author: wyj
  * @date: 2020/05/20
  */

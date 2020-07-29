@@ -24,21 +24,16 @@ public class SymbolTable<K,V> implements Iterable<V>{
     }
 
     public void put(K key,V value){
-        if(isEmpty()){
-            head.next=new Node(key,value,null);
-            N++;
-        }else{
-            Node pre=head;
-            while (pre.next!=null){
-                if(pre.next.key.equals(key)){
-                    pre.next.value=value;
-                    return;
-                }
-                pre=pre.next;
+        Node pre=head;
+        while (pre.next!=null){
+            if(pre.next.key.equals(key)){
+                pre.next.value=value;
+                return;
             }
-            pre.next=new Node(key,value,null);
-            N++;
+            pre=pre.next;
         }
+        pre.next=new Node(key,value,null);
+        N++;
     }
     public V get(K key){
         Node pre=head;
