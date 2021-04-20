@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -31,23 +32,47 @@ public class RelationUtil {
             tmp.put(question.getNumber(),question);
         }
         data = getData();
-        List<String> relations=new ArrayList<>();
+        List<Integer> relations=new ArrayList<>();
         for (Node value : data.values()) {
-            List<String> relationList = value.getRelationList();
-            for (String s : relationList) {
+            List<Integer> relationList = value.getRelationList();
+            for (Integer s : relationList) {
                 if(!relations.contains(s)){
                     relations.add(s);
                 }
             }
         }
         Set<Integer> unrecord=new TreeSet<>();
-        for (String relation : relations) {
-            Node node = data.get(relation);
+        for (Integer relation : relations) {
+            Node node = data.get(Integer.toString(relation));
             if(node==null){
-                unrecord.add(Integer.parseInt(relation));
+                unrecord.add(relation);
             }
         }
         System.out.println("未录入的题目有:"+unrecord);
+    }
+
+    /**
+     * 获取未录入的题目，最大值为题目最大值
+     */
+    private static void getUnrecordList() {
+        List<Node> questions=new ArrayList<>();
+        //扫描题目
+        recursiveFiles("src/leetcode",questions);
+        List<Integer> nowList=new ArrayList<>();
+        int max=0;
+        for (Node n : questions) {
+            String number = n.getNumber();
+            int i = Integer.parseInt(number);
+            max=Math.max(max, i);
+            nowList.add(i);
+        }
+        List<Integer> unrecordList=new ArrayList<>();
+        for (int i=1;i<max;i++){
+            if(!nowList.contains(i)){
+                unrecordList.add(i);
+            }
+        }
+        System.out.println("未录入的题目有:"+unrecordList);
     }
 
     /**
@@ -58,7 +83,7 @@ public class RelationUtil {
             try {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("退出输入:q");
-                System.out.println("输入b进行题目关联，输入d查看录入的已关联题目");
+                System.out.println("输入b进行题目关联，输入d查看录入的已关联题目，a查看当前顺序中未记录的题目");
                 String sc = scanner.next();
                 if("b".equals(sc)){
                     detect();
@@ -84,11 +109,10 @@ public class RelationUtil {
                     }
                     relationList = relationList.replaceAll("，", ",");
                     String[] split = relationList.split(",");
-                    List<String> rlist=new ArrayList<>();
+                    List<Integer> rlist=new ArrayList<>();
                     for (String s : split) {
                         if(s!=null&&s.trim().length()>0){
-                            Integer.parseInt(s);
-                            rlist.add(s);
+                            rlist.add(Integer.parseInt(s));
                         }
                     }
                     System.out.println("确定为题目:"+next+",添加关联题:"+relationList);
@@ -99,11 +123,17 @@ public class RelationUtil {
                     }
                     if("y".equals(next1)){
                         Node node2 = data.get(next);
+                        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+                        String format = sdf.format(new Date());
+                        node2.setDate(format);
+                        Collections.sort(rlist);
                         node2.setRelationList(rlist);
                         writeData();
                     }
                 }else if("d".equals(sc)){
                     getUnrecordRelationList();
+                }else if("a".equals(sc)){
+                    getUnrecordList();
                 }else{
                     System.out.println("输入错误");
                 }
@@ -196,7 +226,16 @@ public class RelationUtil {
 class Node{
     String number;
     String name;
-    List<String> relationList=new ArrayList<>();
+    String date;
+    List<Integer> relationList=new ArrayList<>();
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getNumber() {
         return number;
@@ -214,11 +253,11 @@ class Node{
         this.name = name;
     }
 
-    public List<String> getRelationList() {
+    public List<Integer> getRelationList() {
         return relationList;
     }
 
-    public void setRelationList(List<String> relationList) {
+    public void setRelationList(List<Integer> relationList) {
         this.relationList = relationList;
     }
 
