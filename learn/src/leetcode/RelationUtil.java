@@ -1,7 +1,6 @@
 package leetcode;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 
 import java.io.*;
@@ -18,7 +17,6 @@ public class RelationUtil {
     public static void main(String[] args) {
         //执行关联题目
         runQuestionBind();
-
     }
 
     /**
@@ -42,11 +40,11 @@ public class RelationUtil {
                 }
             }
         }
-        List<String> unrecord=new ArrayList<>();
+        Set<Integer> unrecord=new TreeSet<>();
         for (String relation : relations) {
             Node node = data.get(relation);
             if(node==null){
-                unrecord.add(relation);
+                unrecord.add(Integer.parseInt(relation));
             }
         }
         System.out.println("未录入的题目有:"+unrecord);
