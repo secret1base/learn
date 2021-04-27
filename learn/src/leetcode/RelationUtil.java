@@ -170,11 +170,11 @@ public class RelationUtil {
                     System.out.println("当前题目位置:"+next);
                     String relationList=null;
                     if(node==null){
-                        System.out.println("请开始关联题目添加,添加示例:1,2,3");
+                        System.out.println("请开始关联题目添加,添加示例:1,2,3，无关联题目输入0");
                         relationList = scanner.next();
                     }else{
                         System.out.println("当前已关联题目:"+node.getRelationList());
-                        System.out.println("请开始关联题目添加,添加示例:1,2,3");
+                        System.out.println("请开始关联题目添加,添加示例:1,2,3，无关联题目输入0");
                         relationList = scanner.next();
                     }
                     if("q".equals(relationList)){

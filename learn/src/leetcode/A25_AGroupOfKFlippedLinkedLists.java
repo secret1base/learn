@@ -53,6 +53,8 @@ public class A25_AGroupOfKFlippedLinkedLists {
 
     /**
      * 25.png
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:38.7 MB,击败了60.50% 的Java用户
      * @param head
      * @param k
      * @return
