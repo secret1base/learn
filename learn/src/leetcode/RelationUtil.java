@@ -76,6 +76,79 @@ public class RelationUtil {
     }
 
     /**
+     * 查看为输入难易度的题目
+     */
+    private static void getAllUnrecordDegree() {
+        List<Node> questions=new ArrayList<>();
+        //扫描题目
+        recursiveFiles("src/leetcode",questions);
+        List<Integer> unrecordDegree=new ArrayList<>();
+        data = getData();
+        for (Node question : questions) {
+            Node node = data.get(question.getNumber());
+            if(node!=null&&node.getDegree()==null){
+                unrecordDegree.add(Integer.parseInt(node.number));
+            }
+        }
+        Collections.sort(unrecordDegree);
+        System.out.println("未记录难易度的题目:"+unrecordDegree);
+    }
+
+    /**
+     * 获取题目信息
+     */
+    private static void getQuestionInfo() {
+        List<Node> questions=new ArrayList<>();
+        //扫描题目
+        recursiveFiles("src/leetcode",questions);
+        data = getData();
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("输入带查看的题目号:");
+        int i = scanner.nextInt();
+        System.out.println("查看的题目号为:"+i);
+        Node node = data.get(i+"");
+        if(node==null){
+            System.out.println("无对应信息，请重新输入！");
+            getQuestionInfo();
+        }else{
+            System.out.println("题目号:"+i);
+            System.out.println("难易度:"+node.getDegree());
+            System.out.println("关联题目:"+node.getRelationList());
+            System.out.println("更新难易度输入1");
+            System.out.println("重新查看输入2");
+            System.out.println("结束输入0");
+            int a = scanner.nextInt();
+            if(a==1){
+                System.out.println("输入难易度:");
+                String next = scanner.next();
+                next = next.toUpperCase();
+                if("A".equals(next)||"B".equals(next)||"C".equals(next)||validate(next)){
+                    System.out.println("当前题目:"+i+",难易度更新为:"+next);
+                    node.setDegree(next);
+                    writeData();
+                }else{
+                    System.out.println("难易度输入错误!");
+                }
+            }else if(a==2){
+                getQuestionInfo();
+            }
+        }
+    }
+
+    private static boolean validate(String next) {
+        if(next.length()==1){
+            if("A".equals(next)||"B".equals(next)||"C".equals(next)||"D".equals(next)){
+                return true;
+            }
+        }else{
+            if(next.indexOf("+")!=-1||next.indexOf("-")!=-1){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * 进行题目关联
      */
     private static void runQuestionBind() {
@@ -83,7 +156,7 @@ public class RelationUtil {
             try {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("退出输入:q");
-                System.out.println("输入b进行题目关联，输入d查看录入的已关联题目，a查看当前顺序中未记录的题目");
+                System.out.println("输入b进行题目关联，输入d查看录入的已关联题目，\na查看当前顺序中未记录的题目，查看并记录难度p，\ninfo查看对应题目信息");
                 String sc = scanner.next();
                 if("b".equals(sc)){
                     detect();
@@ -134,6 +207,10 @@ public class RelationUtil {
                     getUnrecordRelationList();
                 }else if("a".equals(sc)){
                     getUnrecordList();
+                }else if("p".equals(sc)){
+                    getAllUnrecordDegree();
+                }else if("info".equals(sc)){
+                    getQuestionInfo();
                 }else{
                     System.out.println("输入错误");
                 }
@@ -160,20 +237,21 @@ public class RelationUtil {
         //获取存储数据
         data = getData();
         //未被记录或关联题未被记录的题目
-        List<String> unrecord=new ArrayList<>();
+        List<Integer> unrecord=new ArrayList<>();
         //判断是否被记录
         for (Node question : questions) {
             String number = question.getNumber();
             Node node = data.get(number);
             if(node == null){
-                unrecord.add(number);
+                unrecord.add(Integer.parseInt(number));
                 data.put(number,question);
             }else{
                 if(node.getRelationList().size()==0){
-                    unrecord.add(number);
+                    unrecord.add(Integer.parseInt(number));
                 }
             }
         }
+        Collections.sort(unrecord);
         System.out.println("未被记录或关联题未被记录的题目为："+unrecord);
     }
 
@@ -227,7 +305,17 @@ class Node{
     String number;
     String name;
     String date;
+    /**难易度A简单B中等C难*/
+    String degree;
     List<Integer> relationList=new ArrayList<>();
+
+    public String getDegree() {
+        return degree;
+    }
+
+    public void setDegree(String degree) {
+        this.degree = degree;
+    }
 
     public String getDate() {
         return date;
@@ -266,6 +354,8 @@ class Node{
         return "Node{" +
                 "number='" + number + '\'' +
                 ", name='" + name + '\'' +
+                ", date='" + date + '\'' +
+                ", degree='" + degree + '\'' +
                 ", relationList=" + relationList +
                 '}';
     }

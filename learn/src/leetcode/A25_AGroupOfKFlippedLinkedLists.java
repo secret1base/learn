@@ -1,6 +1,7 @@
 package leetcode;
 
 import leetcode.tool.ListNode;
+import leetcode.tool.SetListNodeUtil;
 
 /**
  * 25. K 个一组翻转链表
@@ -30,6 +31,11 @@ public class A25_AGroupOfKFlippedLinkedLists {
      * 示例 4：
      * 输入：head = [1], k = 1
      * 输出：[1]
+     * 这里是题目中没有给出的规律，但是测试的时候发现是这样的有点坑
+     * 输入：head = [1,2,3,4], k = 4
+     * 输出：[4,3,2,1]
+     * 输入：head = [1,2,3,4,5], k = 5
+     * 输出：[5,4,3,2,1]
      * 提示：
      * 列表中节点的数量在范围 sz 内
      * 1 <= sz <= 5000
@@ -37,33 +43,62 @@ public class A25_AGroupOfKFlippedLinkedLists {
      * 1 <= k <= sz
      */
     public static void main(String[] args) {
-        ListNode head = new ListNode(1);
-        ListNode tmp=head;
-        for (int i=2;i<5;i++) {
-            tmp.next=new ListNode(i);
-            tmp=tmp.next;
+        ListNode head = SetListNodeUtil.setListNode(new int[]{1, 2,3,4,5});
+        ListNode listNode = new A25_AGroupOfKFlippedLinkedLists().reverseKGroup(head, 4);
+        while (listNode!=null){
+            System.out.println(listNode.val);
+            listNode=listNode.next;
         }
-        ListNode listNode = new A25_AGroupOfKFlippedLinkedLists().reverseKGroup(head, 2);
-        System.out.println();
     }
+
+    /**
+     * 25.png
+     * @param head
+     * @param k
+     * @return
+     */
     public ListNode reverseKGroup(ListNode head, int k) {
-        if(head==null){
-            return head;
-        }
-        ListNode left=head;
-        ListNode right=left;
-        ListNode pre=right;
-        //根据次数找到需要交换的right
-        for (int i = 1; i < k; i++) {
-            if(right==null){
-                //如果没有在对应次数前找到，就不进行交换
-                return head;
+        ListNode hair=new ListNode();
+        hair.next=head;
+        ListNode pre=hair;
+        ListNode end=hair;
+        while (end!=null){
+            for(int i=0;i<k&&end!=null;i++){
+                end=end.next;
             }
-            pre=right;
-            right=right.next;
+            if(end==null){
+                break;
+            }
+            ListNode start=pre.next;
+            ListNode next = end.next;
+            end.next=null;
+            //pre接收头节点
+            pre.next= reverse(start);
+            //start作为尾部节点连接next
+            start.next=next;
+            //初始化,start作为尾部节点，作为下一次循环的pre节点
+            pre=start;
+            end=start;
         }
-        pre.next=left;
-        left.next = reverseKGroup(right.next, k);
-        return right;
+        return hair.next;
     }
+
+    /**
+     * 反转节点
+     * @param head
+     * @return
+     */
+    private ListNode reverse(ListNode head) {
+        ListNode curr=head;
+        ListNode pre=null;
+        while (curr!=null){
+            ListNode next = curr.next;
+            curr.next=pre;
+            pre=curr;
+            curr=next;
+        }
+        return pre;
+    }
+
+
 }
