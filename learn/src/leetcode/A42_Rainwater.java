@@ -1,6 +1,5 @@
 package leetcode;
 
-import java.util.Arrays;
 
 /**
  * 42. 接雨水
@@ -27,8 +26,8 @@ public class A42_Rainwater {
     public static void main(String[] args) {
 //        int[] ints = {0,1,0,2,1,0,1,3,2,1,2,1};
 //        System.out.println(new A42_Rainwater().trap(ints));//6
-//        int[] ints = {4,2,0,3,2,5};
-//        System.out.println(new A42_Rainwater().trap(ints));//9
+        int[] ints = {4,2,0,3,2,5};
+        System.out.println(new A42_Rainwater().trap(ints));//9
     }
 //    /**
 //     * 第一次提交：通过类似俄罗斯方块的消去法进行计算，计算超时
@@ -86,4 +85,35 @@ public class A42_Rainwater {
 //        }
 //        return sum;
 //    }
+
+    /**
+     * 解题思路图片
+     * 42(1).png
+     * 通过动态规划分别找到从左边看的最大值数组和从右边看的最大值数组
+     * 			执行耗时:1 ms,击败了99.99% 的Java用户
+     * 			内存消耗:37.6 MB,击败了98.67% 的Java用户
+     * @param height
+     * @return
+     */
+    public int trap(int[] height) {
+        int max=0;
+        int[] left=new int[height.length];
+        for (int i=0;i<height.length;i++) {
+            max = Math.max(height[i], max);
+            left[i]=max;
+        }
+        max=0;
+        int[] right=new int[height.length];
+        for (int i=height.length-1;i>=0;i--){
+            max=Math.max(height[i], max);
+            right[i]=max;
+        }
+        int sum=0;
+        for(int l=0;l < height.length; l++){
+            //取左右两边的最小值减去当前值作为高，宽恒定为1
+            int h = Math.min(left[l], right[l])-height[l];
+            sum+=h;
+        }
+        return sum;
+    }
 }
