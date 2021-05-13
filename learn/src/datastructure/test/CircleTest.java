@@ -48,20 +48,22 @@ public class CircleTest {
         Node fast=node;
         Node slow=node;
         Node index=null;
-        while (fast.next!=null&&fast.next.next!=null){
+        while (true){
+            if(fast==null||fast.next==null){
+                return null;
+            }
             fast=fast.next.next;
             slow=slow.next;
-            if(index!=null){
-                index=index.next;
-                if(index.equals(slow)){
-                    return index;
-                }
-            }
-            if(fast.equals(slow)){
+            if(index==null&&fast.equals(slow)){
                 index=node;
+                break;
             }
         }
-        return null;
+        while (index!=slow){
+            index=index.next;
+            slow=slow.next;
+        }
+        return index;
     }
 
     private static class Node<T>{
