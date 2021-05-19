@@ -156,7 +156,7 @@ public class RelationUtil {
             try {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("退出输入:q");
-                System.out.println("输入b进行题目关联，输入d查看录入的已关联题目，\na查看当前顺序中未记录的题目，查看并记录难度p，\ninfo查看对应题目信息");
+                System.out.println("输入data近期详情,输入b进行题目关联，输入d查看录入的已关联题目，\na查看当前顺序中未记录的题目，查看并记录难度p，\ninfo查看对应题目信息");
                 String sc = scanner.next();
                 if("b".equals(sc)){
                     detect();
@@ -211,6 +211,8 @@ public class RelationUtil {
                     getAllUnrecordDegree();
                 }else if("info".equals(sc)){
                     getQuestionInfo();
+                }else if("data".equals(sc)){
+                    getCountByDate();
                 }else{
                     System.out.println("输入错误");
                 }
@@ -253,6 +255,29 @@ public class RelationUtil {
         }
         Collections.sort(unrecord);
         System.out.println("未被记录或关联题未被记录的题目为："+unrecord);
+    }
+    /**
+     * 获取每日新增题目数量
+     */
+    public static void getCountByDate(){
+        Map<String, Node> data = getData();
+        Map<String,Integer> day=new HashMap<>();
+        Set<String> days=new TreeSet<>();
+        for (String s : data.keySet()) {
+            Node node = data.get(s);
+            String date = node.getDate();
+            date=date==null?"未记录日期":date;
+            days.add(date);
+            Integer count = day.getOrDefault(date, 0);
+            day.put(date,count+1);
+        }
+        int sum=0;
+        for (String s : days) {
+            Integer integer = day.get(s);
+            sum+=integer;
+            System.out.println("日期:"+s+",数量:"+integer);
+        }
+        System.out.println("总数:"+sum);
     }
 
     private static Map<String,Node> getData() {

@@ -6,7 +6,7 @@ package leetcode.review;
  */
 public class R415_2 {
     public static void main(String[] args) {
-        String s = new R415_2().addString("12", "123");
+        String s = new R415_2().addStrings("12", "123");
         System.out.println(s);
     }
 
