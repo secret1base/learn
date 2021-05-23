@@ -49,4 +49,26 @@ public class A110_BalancedBinaryTree {
             return Math.max(a,b);
         }
     }
+    /**
+     *     boolean flag=true;
+     *     public boolean isBalanced(TreeNode root) {
+     *         getLength(root);
+     *         return flag;
+     *     }
+     *
+     *     private int getLength(TreeNode root) {
+     *         if(root==null||!flag){
+     *             return 0;
+     *         }
+     *         int left=getLength(root.left);
+     *         int right=getLength(root.right);
+     *         if(Math.abs(right-left)>1){
+     *             flag=false;
+     *             //结束循环
+     *             return 0;
+     *         }else{
+     *             return Math.max(left,right)+1;
+     *         }
+     *     }
+     */
 }

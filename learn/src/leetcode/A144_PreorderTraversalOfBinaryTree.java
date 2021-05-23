@@ -41,6 +41,23 @@ public class A144_PreorderTraversalOfBinaryTree {
      *  树中节点数目在范围 [0, 100] 内
      *  -100 <= Node.val <= 100
      */
+    public static void main(String[] args) {
+        TreeNode a3=new TreeNode(3);
+        TreeNode a9=new TreeNode(9);
+        TreeNode a20=new TreeNode(20);
+        TreeNode a5=new TreeNode(5);
+        TreeNode a11=new TreeNode(11);
+        TreeNode a15=new TreeNode(15);
+        TreeNode a7=new TreeNode(7);
+        a3.left=a9;
+        a3.right=a20;
+        a9.left=a5;
+        a9.right=a11;
+        a20.left=a15;
+        a20.right=a7;
+        List<Integer> list = new A144_PreorderTraversalOfBinaryTree().preorderTraversal(a3);
+        System.out.println(list);
+    }
     /**
      * 前序遍历是下面这样的形式
      *     1
