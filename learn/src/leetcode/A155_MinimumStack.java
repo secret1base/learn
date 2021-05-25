@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.Stack;
+
 /**
  * 155.最小栈
  * @author: wyj
@@ -42,36 +44,23 @@ public class A155_MinimumStack {
         System.out.println(minStack.top()==0);
         System.out.println(minStack.getMin()==-2);;
     }
-    int[] arr=new int[8];
-    int index=0;
-    public A155_MinimumStack() {
-
-    }
-
+    Stack<Integer> stack=new Stack<>();
+    Stack<Integer> minStack=new Stack<>();
     public void push(int val) {
-        if(arr.length == index){
-            int[] tmp = new int[arr.length * 2];
-            for (int i = 0; i < arr.length; i++) {
-                tmp[i] = arr[i];
-            }
-            arr=tmp;
+        stack.push(val);
+        if(minStack.isEmpty()){
+            minStack.push(Integer.MAX_VALUE);
         }
-        arr[index++]=val;
+        minStack.push(Math.min(val,minStack.peek()));
     }
-
     public void pop() {
-        index--;
+        minStack.pop();
+        stack.pop();
     }
-
     public int top() {
-        return arr[index-1];
+        return stack.peek();
     }
-
     public int getMin() {
-        int min=Integer.MAX_VALUE;
-        for (int i = 0; i < index; i++) {
-            min=Math.min(min,arr[i]);
-        }
-        return min;
+        return minStack.peek();
     }
 }

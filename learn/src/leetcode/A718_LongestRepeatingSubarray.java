@@ -31,27 +31,25 @@ public class A718_LongestRepeatingSubarray {
      */
     public int findLength(int[] nums1, int[] nums2) {
         int max=0;
-        for (int i = 0; i < nums1.length;i++){
-            for (int j = 0; j < nums2.length;j++){
-                //剪枝，当两个数组的剩余长度的最小值比max小，那就没有继续找下去的必要了
-                if(Math.min(nums2.length-j,nums1.length-i)<=max){
-                    break;
-                }
+        for (int i = 0; i < nums1.length; i++) {
+            for (int j = 0; j < nums2.length; j++) {
                 if(nums1[i]==nums2[j]){
-                    max=Math.max(getLength(i,j,nums1,nums2),max);
+                    int tmp=1;
+                    int a=i+1;
+                    int b=j+1;
+                    while (a<nums1.length&&b<nums2.length){
+                        if(nums1[a]==nums2[b]){
+                            tmp++;
+                            a++;
+                            b++;
+                        }else{
+                            break;
+                        }
+                    }
+                    max=Math.max(max,tmp);
                 }
             }
         }
         return max;
-    }
-
-    private int getLength(int i, int j, int[] nums1, int[] nums2) {
-        int index=0;
-        while (i<nums1.length&&j<nums2.length&&nums1[i] == nums2[j]){
-            i++;
-            j++;
-            index++;
-        }
-        return index;
     }
 }

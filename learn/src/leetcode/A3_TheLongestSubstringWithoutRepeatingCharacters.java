@@ -1,7 +1,9 @@
 package leetcode;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * 3. 无重复字符的最长子串
@@ -39,30 +41,58 @@ public class A3_TheLongestSubstringWithoutRepeatingCharacters {
     }
 
     /**
-     * 执行用时：845 ms, 在所有 Java 提交中击败了5.01%的用户
-     * 内存消耗：38.8 MB, 在所有 Java 提交中击败了28.86%的用户
+     * 第二次解题
+     * 		执行耗时:24 ms,击败了17.11% 的Java用户
+     * 		内存消耗:39.9 MB,击败了5.04% 的Java用户
+     * @param s
+     * @return
      */
     public int lengthOfLongestSubstring(String s) {
-        int length = s.length();
+        String[] arr = s.split("");
         int max=0;
-        List<Character> list=new ArrayList<>();
-        for (int i = 0; i < length; i++) {
-            list=new ArrayList<>();
-            for (int j = i; j < length; j++) {
-                if(list.contains(s.charAt(j))){
-                    max=Math.max(max,list.size());
-                    break;
-                }else{
-                    list.add(s.charAt(j));
-                    //当没有下一次执行时，提前进行长度判断
-                    if(j+1==length){
-                        max=Math.max(max,list.size());
-                    }
+        Queue<String> queue=new LinkedList<>();
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i].length()==0){
+                continue;
+            }
+            if(!queue.contains(arr[i])){
+                queue.offer(arr[i]);
+                max=Math.max(queue.size(),max);
+            }else{
+                //一直pop到把arr[i]相同的值pop掉
+                while (!queue.poll().equals(arr[i])){
                 }
+                queue.offer(arr[i]);
             }
         }
         return max;
     }
+
+//    /** 第一次解题
+//     * 执行用时：845 ms, 在所有 Java 提交中击败了5.01%的用户
+//     * 内存消耗：38.8 MB, 在所有 Java 提交中击败了28.86%的用户
+//     */
+//    public int lengthOfLongestSubstring(String s) {
+//        int length = s.length();
+//        int max=0;
+//        List<Character> list=new ArrayList<>();
+//        for (int i = 0; i < length; i++) {
+//            list=new ArrayList<>();
+//            for (int j = i; j < length; j++) {
+//                if(list.contains(s.charAt(j))){
+//                    max=Math.max(max,list.size());
+//                    break;
+//                }else{
+//                    list.add(s.charAt(j));
+//                    //当没有下一次执行时，提前进行长度判断
+//                    if(j+1==length){
+//                        max=Math.max(max,list.size());
+//                    }
+//                }
+//            }
+//        }
+//        return max;
+//    }
 
 
 }

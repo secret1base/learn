@@ -91,7 +91,7 @@ public class A10_RegularExpressionMatching {
                     /**
                      * 1、先判断上面两格子b-1，b-2是否存在true，存在则为true
                      * 2、如不满足上面条件，需要满足两个条件
-                     *    1、判断a-1是否为true，存在则为true
+                     *    1、a-1为true
                      *    2、y-1=x =>p.charAt(b-2)==s.charAt(a-1)或者y-1==.
                      */
                     boolean b1=false;
