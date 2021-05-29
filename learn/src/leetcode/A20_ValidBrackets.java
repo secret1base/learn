@@ -48,6 +48,7 @@ public class A20_ValidBrackets {
      * 解题思路:有效括号最中间一定会有一个单独的闭合括号()/[]/{}
      * 执行用时：196 ms, 在所有 Java 提交中击败了5.20%的用户
      * 内存消耗：39.5 MB, 在所有 Java 提交中击败了5.03%的用户
+     *
      */
     public boolean isValid(String s) {
         while (s.length() > 0){

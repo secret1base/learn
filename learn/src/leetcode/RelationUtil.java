@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 
 import java.io.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -272,8 +273,12 @@ public class RelationUtil {
             day.put(date,count+1);
         }
         int sum=0;
-        for (String s : days) {
-            Integer integer = day.get(s);
+        String[] str = days.toArray(new String[days.size()]);
+        String begin = str[0];
+        String end = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        List<String> listDate = getRangeDate(begin, end);
+        for (String s : listDate) {
+            Integer integer = day.getOrDefault(s,0);
             sum+=integer;
             System.out.println("日期:"+s+",数量:"+integer);
         }
@@ -322,6 +327,25 @@ public class RelationUtil {
                     }
                 }
             }
+        }
+    }
+    public static List<String> getRangeDate(String beginDate,String endDate){
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date begin = sdf.parse(beginDate);
+            Date end = sdf.parse(endDate);
+            List<String> dateList=new ArrayList<>();
+            long beginLong = begin.getTime();
+            long endLong = end.getTime();
+            while(beginLong<=endLong){
+                Date date=new Date(beginLong);
+                String format = sdf.format(date);
+                dateList.add(format);
+                beginLong+=24*60*60*1000;
+            }
+            return dateList;
+        }catch (Exception e){
+            return new ArrayList<>();
         }
     }
 }
