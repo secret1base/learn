@@ -22,7 +22,7 @@ public class RelationUtil {
     }
 
     /**
-     * 获取未录入的关联题目
+     * 获取未录入的关联题目 剑指offer从10000开始编号
      */
     private static void getUnrecordRelationList() {
         List<Node> questions=new ArrayList<>();
