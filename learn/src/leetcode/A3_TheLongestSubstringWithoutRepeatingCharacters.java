@@ -1,9 +1,6 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * 3. 无重复字符的最长子串
@@ -41,32 +38,52 @@ public class A3_TheLongestSubstringWithoutRepeatingCharacters {
     }
 
     /**
-     * 第二次解题
-     * 		执行耗时:24 ms,击败了17.11% 的Java用户
-     * 		内存消耗:39.9 MB,击败了5.04% 的Java用户
-     * @param s
-     * @return
+     * 执行耗时:26 ms,击败了16.53% 的Java用户
+     * 内存消耗:38.5 MB,击败了56.83% 的Java用户
      */
     public int lengthOfLongestSubstring(String s) {
-        String[] arr = s.split("");
+        //输入: s = "abcabcbb"
+        //输出: 3
+        //解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
         int max=0;
-        Queue<String> queue=new LinkedList<>();
-        for (int i = 0; i < arr.length; i++) {
-            if(arr[i].length()==0){
-                continue;
+        Deque<Character> path=new LinkedList<>();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            while (path.contains(c)){
+                path.pollFirst();
             }
-            if(!queue.contains(arr[i])){
-                queue.offer(arr[i]);
-                max=Math.max(queue.size(),max);
-            }else{
-                //一直pop到把arr[i]相同的值pop掉
-                while (!queue.poll().equals(arr[i])){
-                }
-                queue.offer(arr[i]);
-            }
+            path.offerLast(c);
+            max=Math.max(path.size(),max);
         }
         return max;
     }
+//    /**
+//     * 第二次解题
+//     * 		执行耗时:24 ms,击败了17.11% 的Java用户
+//     * 		内存消耗:39.9 MB,击败了5.04% 的Java用户
+//     * @param s
+//     * @return
+//     */
+//    public int lengthOfLongestSubstring(String s) {
+//        String[] arr = s.split("");
+//        int max=0;
+//        Queue<String> queue=new LinkedList<>();
+//        for (int i = 0; i < arr.length; i++) {
+//            if(arr[i].length()==0){
+//                continue;
+//            }
+//            if(!queue.contains(arr[i])){
+//                queue.offer(arr[i]);
+//                max=Math.max(queue.size(),max);
+//            }else{
+//                //一直pop到把arr[i]相同的值pop掉
+//                while (!queue.poll().equals(arr[i])){
+//                }
+//                queue.offer(arr[i]);
+//            }
+//        }
+//        return max;
+//    }
 
 //    /** 第一次解题
 //     * 执行用时：845 ms, 在所有 Java 提交中击败了5.01%的用户

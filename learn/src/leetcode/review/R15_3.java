@@ -34,7 +34,6 @@ public class R15_3 {
                     tmp.add(nums[left]);
                     tmp.add(nums[right]);
                     list.add(tmp);
-                    break;
                 }
             }
         }
