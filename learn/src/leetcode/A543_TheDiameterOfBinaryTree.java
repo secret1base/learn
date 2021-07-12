@@ -23,6 +23,13 @@ public class A543_TheDiameterOfBinaryTree {
      * @return
      */
     public static void main(String[] args) {
+        /**
+         *            1
+         *          / \
+         *         2   3
+         *        / \
+         *       4   5
+         */
         TreeNode a1 = new TreeNode(1);
         TreeNode a2 = new TreeNode(2);
         TreeNode a3 = new TreeNode(3);
